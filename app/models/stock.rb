@@ -1,0 +1,2 @@
+class Stock < Account
+end
