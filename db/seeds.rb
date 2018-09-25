@@ -22,7 +22,7 @@ end
 
 accounts.each do |k, v|
 	acc= Account.new(email: k, password: k, password_confirmation: k, type: v)
-	acc.skip_confirmation!
+	acc.skip_confirmation! if v=='User'
 	puts k if acc.save!
 	next if v=='System'
 	10.times do

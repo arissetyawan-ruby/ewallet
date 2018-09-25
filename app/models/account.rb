@@ -13,6 +13,11 @@ class Account < ApplicationRecord
   has_many :receivings, class_name: 'Transaction', foreign_key: 'to_id', dependent: :destroy
   has_many :transfers, class_name: 'Transaction', foreign_key: 'from_id', dependent: :destroy
   validates :type, presence: true
+  before_validation :set_default_type
+
+  def set_default_type
+    self.type= 'User' if self.type.blank?
+  end
 
   def destinations
     Account.where.not(id: [SYSTEM.id, self.id]).order('email ASC').map{|d| [d.email, d.id]}
