@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   devise_for :accounts, controllers: {
-  	sessions: 'accounts/sessions'
+  	sessions: 'accounts/sessions', registrations: 'accounts/registrations'
   }
 
 	get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
+	resources :transactions
+
+	get '/registrations', to: 'home#registration', as: 'registration_board'
 end

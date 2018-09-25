@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag    'registration', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<%= form_for(@trans, url: transactions_path, html: { class:"form-signin"} ) do |f| %>
+
+  <img class="mb-4" src="" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Your wallet: <%= current_account.get_total_balance %></h1>
+
+	<hr />
+
+	<h3>Top Up</h3>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+
+
+<% end -%>
