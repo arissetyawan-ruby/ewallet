@@ -9,11 +9,16 @@
 accounts= {
 					'system@kiranatama.com' => 'System',
 					'user@kiranatama.com' => 'User',
+					'user1@kiranatama.com' => 'User',
+					'user2@kiranatama.com' => 'User',
+					'user3@kiranatama.com' => 'User',
 					'team@kiranatama.com' => 'Team',
 					'stock@kiranatama.com' => 'Stock'
 					}
 
-Account.delete_all
+Account.all.each do |a|
+	a.destroy
+end
 
 accounts.each do |k, v|
 	acc= Account.new(email: k, password: k, password_confirmation: k, type: v)
