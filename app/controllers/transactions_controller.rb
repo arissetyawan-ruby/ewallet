@@ -21,7 +21,10 @@ class TransactionsController < AccessController
 	end
 
   def create
-    target= User.find(transaction_params[:to_id])
+    @trans_to_id= transaction_params[:to_id]
+    temp= @trans_to_id.split('_')
+    klass= temp.last.constantize
+    target= klass.find(temp.first)
     @trans= current_user.transfer(target, transaction_params[:amount])
     if @trans.errors.blank?
       flash[:notice] = "You have transfered successfully"
