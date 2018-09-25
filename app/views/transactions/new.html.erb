@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label :Destination %><br />
-    <%= f.select :to_id, options_for_select(current_account.destinations), class:"form-control" ,placeholder: "email", required: :autofocus %>
+    <%= f.select :to_id, options_for_select(current_user.destinations), class:"form-control" ,placeholder: "email", required: :autofocus %>
   </div>
 
   <div class="field">

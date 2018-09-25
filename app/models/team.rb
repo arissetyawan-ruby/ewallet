@@ -1,2 +1,2 @@
-class Team < Account
+class Team < ApplicationRecord
 end

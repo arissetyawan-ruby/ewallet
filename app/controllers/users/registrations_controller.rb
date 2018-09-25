@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class Accounts::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   layout 'logged', only: [:edit, :update]
 
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_user_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -48,12 +48,12 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
     # If you have extra params to permit, append them to the sanitizer.
 #    def configure_sign_up_params
-#      devise_parameter_sanitizer.permit(:account, keys: [:type])
+#      devise_parameter_sanitizer.permit(:user, keys: [:type])
 #    end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # def configure_user_update_params
+  #   devise_parameter_sanitizer.permit(:user_update, keys: [:attribute])
   # end
 
   # The path used after sign up.
@@ -61,7 +61,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  # The path used after sign up for inactive accounts.
+  # The path used after sign up for inactive users.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end

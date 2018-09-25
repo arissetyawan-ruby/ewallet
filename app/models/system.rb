@@ -1,2 +1,2 @@
-class System < Account
+class System < ApplicationRecord
 end

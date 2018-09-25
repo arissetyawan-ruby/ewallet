@@ -20,7 +20,7 @@
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-        <%= link_to('Sign out', destroy_account_session_path, method: :delete, class: "nav-link" , title: current_account.email ) %>
+        <%= link_to('Sign out', destroy_user_session_path, method: :delete, class: "nav-link" , title: current_user.email ) %>
         </li>
       </ul>
     </nav> 
@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<%= edit_account_registration_path %>">
+                <a class="nav-link" href="<%= edit_user_registration_path %>">
                   <span data-feather="file"></span>
                   My Account
                 </a>

@@ -6,11 +6,11 @@ class TransactionsController < AccessController
 
 	def index
 		@trans= Transaction.new
-		@transactions= Transaction.where(from_id: current_account.id).or(Transaction.where(to_id: current_account.id)).order('created_at DESC')
+		@transactions= Transaction.where(from_id: current_user.id).or(Transaction.where(to_id: current_user.id)).order('created_at DESC')
 	end
 
 	def top_up
-		@trans= current_account.top_up(transaction_params[:amount])
+		@trans= current_user.top_up(transaction_params[:amount])
 		if @trans.valid?
       flash[:notice] = "You have top up successfully"
     	redirect_to dashboard_path
@@ -21,8 +21,8 @@ class TransactionsController < AccessController
 	end
 
   def create
-    target= Account.find(transaction_params[:to_id])
-    @trans= current_account.transfer(target, transaction_params[:amount])
+    target= User.find(transaction_params[:to_id])
+    @trans= current_user.transfer(target, transaction_params[:amount])
     if @trans.errors.blank?
       flash[:notice] = "You have transfered successfully"
       redirect_to dashboard_path
@@ -34,7 +34,7 @@ class TransactionsController < AccessController
 
   def withdraw
     if request.post?
-      @trans= current_account.withdraw(transaction_params[:amount])
+      @trans= current_user.withdraw(transaction_params[:amount])
       if @trans.errors.blank?
         flash[:notice] = "You have withdrawed successfully"
         redirect_to dashboard_path

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  devise_for :accounts, controllers: {
-  	sessions: 'accounts/sessions', registrations: 'accounts/registrations'
+  devise_for :users, controllers: {
+  	sessions: 'users/sessions', registrations: 'users/registrations'
   }
 
 	get '/dashboard', to: 'dashboard#index', as: 'dashboard'

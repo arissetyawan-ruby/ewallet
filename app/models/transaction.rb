@@ -1,16 +1,16 @@
 class Transaction < ApplicationRecord
-	belongs_to :from, class_name: 'Account', foreign_key: :from_id
-	belongs_to :to, class_name: 'Account', foreign_key: :to_id
+	belongs_to :from, polymorphic: true, optional: true
+	belongs_to :to, polymorphic: true, optional: true
   validates :amount, :numericality => { :greater_than => 0, only_integer: true }
 
   def description
-  	if to==Account::SYSTEM
+  	if to.is_a?(System)
   		return 'Withdraw'
-  	elsif from===Account::SYSTEM
+  	elsif from.is_a?(System)
   		return 'Deposit'
-  	elsif to != Account::SYSTEM
-  		return 'Transfer'
-  	end
+  	else
+ 		  return 'Transfer'
+    end
   end
 
 end

@@ -3,7 +3,7 @@
 <%= form_for(@trans, url: top_up_transactions_path, html: { class:"form-signin"} ) do |f| %>
   
   <img class="mb-4" src="" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Your wallet: <%= number_to_currency(current_account.get_total_balance) %></h1>
+  <h1 class="h3 mb-3 font-weight-normal">Your wallet: <%= number_to_currency(current_user.get_total_balance) %></h1>
 
 	<hr />
 
