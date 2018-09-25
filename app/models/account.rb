@@ -16,17 +16,30 @@ class Account < ApplicationRecord
   end
 
   def top_up(value)
-  	Transaction.create(from: SYSTEM, to: self, amount: value)
+  	trans= Transaction.new(from: SYSTEM, to: self, amount: value)
+    trans.save
+    trans
   end
 
-  def transfer(to, value)
-    # only receive integer
-    trans= Transaction.new(from: self, to: to, amount: value)
-  	if get_total_balance >= value.to_i
-      return trans if trans.save
+  def transfer(to, amount)
+    trans= Transaction.new(from: self, to: to, amount: amount)
+    if get_total_balance >= amount.to_i
+      trans.save
+    else
+      trans.valid?
+      trans.errors.add(:your_balance, 'is not enought')
     end
+    trans
+  end
 
-    trans.errors.add(:balance, 'Your balance is not enought')
+  def withdraw(amount)
+    trans= Transaction.new(from: self, to: SYSTEM, amount: amount)
+    if get_total_balance >= amount.to_i
+      trans.save
+    else
+      trans.valid?
+      trans.errors.add(:your_balance, 'is not enought')
+    end
     trans
   end
 

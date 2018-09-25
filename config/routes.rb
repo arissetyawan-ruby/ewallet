@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 	resources :transactions do
 		collection do
 			post :top_up
+			get :withdraw
+			post :withdraw
 		end
 
 	end

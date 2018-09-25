@@ -24,6 +24,7 @@
             <th>From</th>
             <th>To</th>
             <th>Total</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
             <td><%= t.from.email %> <%= you(t.from_id, current_account.id) %></td>
             <td><%= t.to.email %> <%= you(t.to_id, current_account.id) %></td>
             <td><%= number_to_currency(t.amount) %></td>
+            <td><%= t.description %></td>
           </tr>
           <% end %>
         </tbody>

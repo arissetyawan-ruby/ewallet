@@ -7,7 +7,7 @@ module ApplicationHelper
 	def error_messages_for(obj)
 		res= "<ul>"
 		obj.errors.each do |k, v|
-			res+= "<li>" + k.to_s.humanize + ", " + v.humanize + "</li>"
+			res+= "<li>" + k.to_s.humanize + " " + v.humanize.downcase + "</li>"
 		end
 		res += "</ul>"
 		raw(res)

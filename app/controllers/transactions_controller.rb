@@ -20,17 +20,32 @@ class TransactionsController < AccessController
     end
 	end
 
-	def create
-		target= Account.find(transaction_params[:to_id])
-		@trans= current_account.transfer(target, transaction_params[:amount])
-		if @trans.errors.blank?
+  def create
+    target= Account.find(transaction_params[:to_id])
+    @trans= current_account.transfer(target, transaction_params[:amount])
+    if @trans.errors.blank?
       flash[:notice] = "You have transfered successfully"
-    	redirect_to dashboard_path
+      redirect_to dashboard_path
     else
       flash.now[:error] = "Please double check entry"
       render 'new'
     end
-	end
+  end
+
+  def withdraw
+    if request.post?
+      @trans= current_account.withdraw(transaction_params[:amount])
+      if @trans.errors.blank?
+        flash[:notice] = "You have withdrawed successfully"
+        redirect_to dashboard_path
+      else
+        flash.now[:error] = "Please double check amount"
+        render 'withdraw'
+      end
+    else
+      @trans= Transaction.new
+    end
+  end
 
   private
 
