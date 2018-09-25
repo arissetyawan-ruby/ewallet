@@ -1,6 +1,7 @@
 class Account < ApplicationRecord
 	SYSTEM= System.first #comment this on migration
-	TYPES= ['User', 'Team', 'Stock', 'System']
+  REGISTRATION_TYPES= ['User', 'Team', 'Stock']
+	TYPES= REGISTRATION_TYPES + ['System']
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

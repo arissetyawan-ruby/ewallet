@@ -71,7 +71,7 @@
 
   <div class="field">
     <%= f.label :type %>
-    <%= f.select :type, options_for_select(Account::TYPES, resource.type.to_s), class: "form-control" %>
+    <%= f.select :type, options_for_select(Account::REGISTRATION_TYPES, (params[:type] || resource.type.to_s)), class: "form-control" %>
   </div>
 
 
