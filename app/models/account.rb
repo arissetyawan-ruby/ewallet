@@ -1,5 +1,8 @@
 class Account < ApplicationRecord
-	SYSTEM= System.first #comment this on migration
+	SYSTEM= begin
+            System.first # instead, comment this on migration
+          rescue
+          end
   REGISTRATION_TYPES= ['User', 'Team', 'Stock']
 	TYPES= REGISTRATION_TYPES + ['System']
   # Include default devise modules. Others available are:
