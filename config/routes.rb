@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
 	get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
-	resources :transactions
+	resources :transactions do
+		collection do
+			post :top_up
+		end
+
+	end
 
 	get '/registrations', to: 'home#registration', as: 'registration_board'
 end
