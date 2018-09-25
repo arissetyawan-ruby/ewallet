@@ -1,22 +1,28 @@
 <%= stylesheet_link_tag    'registration', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <%= form_for(@trans, url: transactions_path, html: { class:"form-signin"} ) do |f| %>
-  
+
   <img class="mb-4" src="" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal">Your wallet: <%= current_account.get_total_balance %></h1>
 
 	<hr />
 
 	<h3>Top Up</h3>
-  <p> Real app will require eg. CC validation to top up, etc</p>
-  <%= error_messages_for @trans %>
+
+  <div class="field">
+    <%= f.label :Destination %><br />
+    <%= f.select :to_id, options_for_select(current_account.destinations), class:"form-control" ,placeholder: "email", required: :autofocus %>
+  </div>
+
+
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.text_field :amount, autofocus: true, autocomplete: "off", class:"form-control" ,placeholder: "Amount", required: :autofocus %>
   </div>
 
+
   <div class="actions">
-    <%= f.submit "Top", class: "btn btn-lg btn-primary btn-block" %>
+    <%= f.submit "Transfer", class: "btn btn-lg btn-primary btn-block" %>
   </div>
 
 

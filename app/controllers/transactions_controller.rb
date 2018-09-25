@@ -9,6 +9,7 @@ class TransactionsController < AccessController
 	end
 
 	def create
+		@trans= Transaction.new(params)
 	end
 
 	def new
